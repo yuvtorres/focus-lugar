@@ -1,8 +1,8 @@
 # Project FocusLugar
 
-Tool for find the optimal location of an office for a new company
+Tool to find the optimal location of an office for a new company
 
-# Introduction
+## Introduction
 
 The tool evaluates any point as a propouse place to ubicate the head office. It 
 defines an objective function that depend on the following ad-hoc caractheristics:
@@ -16,10 +16,13 @@ defines an objective function that depend on the following ad-hoc caractheristic
 - Not companies with more than 10 years in a radius of 2 KM.
 - Vegan restaurant.
 
-# The data
+## The data
 
 The origin of data are:
 
 * API Maps, de google maps ()
 * BD of companies (18)
+
+## The Search
+
 
