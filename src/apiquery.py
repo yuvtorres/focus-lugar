@@ -34,7 +34,7 @@ def genera_bd():
             result=importar_api_map(city['latitud'],city['longitud'],2000,lugar)
             result=pd.DataFrame(result)
             result.to_json('output/'+city['ciudad']+'_'+lugar[0]+".json")
-
+    
     return True
 
 # Recibe las coordenadas, el radio de busqueda y criterio como tuple, y retorna 
