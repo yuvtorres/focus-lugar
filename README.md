@@ -20,9 +20,50 @@ defines an objective function that depend on the following ad-hoc caractheristic
 
 The origin of data are:
 
-* API Maps, de google maps ()
-* BD of companies (18)
+* API Maps, de google maps: 
+	- Kindergarden near the point of interest
+	- Nearest Airport 
+	- Sturbucks
+	- Basquetball courts
+	- Vegan restaurant
+
+
+* BD of companies: 18k companies all over the world, it was used to get the location of:
+	- Companies of Design.
+	- Success startup that have raised more than 1 millon dollars.
+	- Companies with more than 10 years. 
 
 ## The Search
+
+a) The tool define an objective function, that follow:
+
+1. How, given a point, it accomplish the following requirements:
+	- Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
+	- 30% of the company have at least 1 child.
+	- Developers like to be near successful tech startups that have raised at least 1 Million dollars.
+	- Executives like Starbucks A LOT. Ensure there's a starbucks not to far.
+	- Account managers need to travel a lot
+	- All people in the company have between 25 and 40 years, give them some place to go to party.	
+	- Nobody in the company likes to have companies with more than 10 years in a radius of 2 KM.
+	- The CEO is Vegan
+
+2. Then valuate all this requeriments with the quantity of personal affected, depend on the following distribution:
+
+	- 20 Designers
+	- 5 UI/UX Engineers
+	- 10 Frontend Developers
+	- 15 Data Engineers
+	- 5 Backend Developers
+	- 20 Account Managers
+	- 1 Maintenance guy that loves basketball
+	- 10 Executives
+	- 1 CEO/President
+
+	and how each of the personal makes grow the company. 
+
+b) Over this function the tool proposes some points and begin iterate over the function until the stop criteria.
+
+
+## The Results
 
 
