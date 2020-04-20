@@ -18,4 +18,8 @@ defines an objective function that depend on the following ad-hoc caractheristic
 
 # The data
 
+The origin of data are:
+
+* API Maps, de google maps ()
+* BD of companies (18)
 
