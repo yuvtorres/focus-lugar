@@ -116,7 +116,7 @@ def val_old(point):
     if len(dist_2000)==0:
         return 1
     # las empresas que hay estan a menos de 2000 mt
-    return (2000 - min(dist_2000))/2000
+    return (min(dist_2000))/2000
 
 
 
