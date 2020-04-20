@@ -1,4 +1,24 @@
 import numpy as np
+import research_tool
+# Función Objetivo
+
+# recibe un array de puntos (Lat, Lng) y retorna el valor de la función
+
+def fun_objetivo(x):
+    point=(x[0],x[1])
+
+    Val_by_place={"other Design companies":research_tool.val_design(point),
+         "kindergarden":research_tool.val_kindergarden(point),
+         "success startup":research_tool.val_succ(point),
+         "Starbucks":research_tool.val_starbucks(point),
+         "Airport_or_train_station":research_tool.val_airport(point),
+         "place_to party":research_tool.val_party(point),
+         "basqueball court":research_tool.val_basquet(point),
+         "no_2km_old_company":research_tool.val_old(point),
+         "vegan_restaurant":research_tool.val_vegetariano(point)}
+
+    return valor(**Val_by_place)
+
 
 # función de valoración
 # recibe como argumento el siguiente diccionario:

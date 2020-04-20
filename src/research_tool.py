@@ -3,6 +3,7 @@
 import math
 import json
 from pymongo import MongoClient
+import apiquery
 
 # distancia entre dos puntos Lat,Log
 def f_haversine(point1,point2):
@@ -120,42 +121,152 @@ def val_old(point):
 
 
 
-def val_kindergarden_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
+def val_kindergarden(point):
+    lat=point[0]
+    lon=point[1]
+    radio=2000
+    item=("kindergarden","text")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay guarderias
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
+
+    if min(distancias)>3000:
+        return 0
+    
+    dist_3000 = list(filter( lambda number: number<2000,distancias))
+    
+    if len(dist_3000)==0:
+        return 0
+    # las empresas que hay estan a menos de 2000 mt
+    return (3000 - min(dist_3000))/3000
 
 
 
-def val_starbucks_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
+def val_starbucks(point):
+    lat=point[0]
+    lon=point[1]
+    radio=2000
+    item=("starbucks","text")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay starbucks
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
+
+    if min(distancias)>550:
+        return 0
+    
+    dist_550 = list(filter( lambda number: number<550,distancias))
+    
+    if len(dist_550)==0:
+        return 0
+    # las empresas que hay estan a menos de 2000 mt
+    return (550 - min(dist_550))/550
 
 
-def val_airport_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
+def val_airport(point):
+    lat=point[0]
+    lon=point[1]
+    radio=10000
+    item=("airport","type")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay aeropuertos 
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
+
+    # segun lo cerca que quede el aeropuerto
+    return (10000 - min(distancias))/10000
 
 
-def val_party_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
+def val_party(point):
+    lat=point[0]
+    lon=point[1]
+    radio=2000
+    item=("night_club","type")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay bares de copas
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
+
+    if min(distancias)>550:
+        return 0
+    
+    dist_550 = list(filter( lambda number: number<550,distancias))
+    
+    if len(dist_550)==0:
+        return 0
+    # segun la distancia y el número de bares
+    if len(dist_550)>5:
+        return 1
+    else:
+        return(550 - min(dist_550))/550
 
 
-def val_basquet_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
 
+def val_basquet(point):
+    lat=point[0]
+    lon=point[1]
+    radio=1500
+    item=("basketball court","text")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay canchas de baloncesto
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
 
-def val_old_madrid(point_madrid):
-    # Connect and get the data --> coodenates
-    url_mongo = "mongodb://localhost:27017"
-    client = MongoClient(url_mongo)
-    db = client.get_database("design")
-    result = list(db.companies.find({},{"category_code":1,"_id":0}))
-    categories = [e['category_code'] for e in result]
+    # si hay mas de dos retorna 1
+    if len(distancias)>2:
+        return 1
+    else:
+        return(1500 - min(distancias))/1500
 
-def val_vegetariano_madrid(point_madrid):
-    fp=open('../output/')
-    points=json.load()
+def val_vegetariano(point):
+    lat=point[0]
+    lon=point[1]
+    radio=1500
+    item=("vegan restaurant","text")
+    result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay restaurantes venganos
+    if len(result)==0:
+        return 0
+    
+    puntos=[]
+    [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
+    
+    distancias=[]
+    [ distancias.append( f_haversine( point, e ) ) for e in puntos ]
 
-
+    # si hay mas de dos retorna 1
+    if len(distancias)>2:
+        return 1
+    else:
+        return(1500 - min(distancias))/1500
