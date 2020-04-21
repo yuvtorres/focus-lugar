@@ -79,7 +79,7 @@ def main():
         for k in range(num_pasos):
             linea_valor.append(fun_objetivo([lat_min+k*paso_lat,lng_min+i*paso_lng]))
         
-        valor_md.append(linea_valor)
+            valor_md.append(linea_valor)
 
 
     malla_md=[]
@@ -91,7 +91,7 @@ def main():
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)+0.5)*paso_lat),
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)-0.5)*paso_lat)]])
 
-        malla_md.append( Feature(properties={"valor":valor_md[k][i]},geometry=el_cubo) )
+            malla_md.append( Feature(properties={"valor":valor_md[k][i]},geometry=el_cubo) )
 
     malla_md_json= FeatureCollection(malla_md)
     
