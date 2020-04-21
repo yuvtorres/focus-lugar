@@ -81,4 +81,5 @@ def valor(**Val_by_place):
     Per_Val=np.array((Rel_personal_Val_place))
     temp1=np.matmul(Per_Val,val)
     temp2=np.matmul(pers,np.diag(vgrow))
-    return np.matmul(temp1,temp2)
+    result= np.matmul(temp1,temp2)
+    return result

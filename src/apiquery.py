@@ -60,8 +60,14 @@ def importar_api_map(lat,lon,radio,item):
     if data['status']=='OK':
         [resultado.append(e['geometry']['location']) for e in data['results']]
     else:
-        print(f'error in lat:{lat}, lon:{lon} and item:{item} search')
-        return 0
+        time.sleep(22)
+        res=requests.get(url)
+        data=res.json()
+        if data['status']=='OK':
+            [resultado.append(e['geometry']['location']) for e in data['results']]
+        else:
+            print(f'1. error in lat:{lat}, lon:{lon} and item:{item} search')
+            return 0
 
     while 'next_page_token' in data:
         time.sleep(2)
@@ -74,7 +80,7 @@ def importar_api_map(lat,lon,radio,item):
         if data2['status']=='OK' and len(data2['results'])>0:
             [resultado.append(e['geometry']['location'] ) for e in data2['results']]
         else:
-            print(f'error in lat:{lat}, lon:{lon} and item:{item} search')
+            print(f'2. error in lat:{lat}, lon:{lon} and item:{item} search')
             print(f'Status: {data2["status"]} - results:{data2["results"]} ')
             return 0
         data=data2

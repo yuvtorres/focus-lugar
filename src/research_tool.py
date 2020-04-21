@@ -48,7 +48,7 @@ def val_design(point):
         return 1
 
     else:
-        return 0.2 +0.8*(1000 - min(distancia))/900
+        return 0.2 +0.8*(1000 - min(distancias))/900
 
 # devuelve un valor entre cero y uno dependiendo del criterio de startups 
 # que han recaudado mas de 1 millon de USD
@@ -85,7 +85,7 @@ def val_succ(point):
         return 1
 
     else:
-        return 0.2 +0.8*(1000 - min(distancia))/900
+        return 0.2 +0.8*(1000 - min(distancias))/900
 
 # devuelve un valor entre cero y uno dependiendo del criterio de no tener compañias  
 # con mas de 10 años em un radio de 2 km
@@ -127,10 +127,15 @@ def val_kindergarden(point):
     radio=2000
     item=("kindergarden","text")
     result=apiquery.importar_api_map(lat,lon,radio,item)
-    # no hay guarderias
+
+    # no hay guarderias o error en la consulta
+    if isinstance(result,int):
+        print(f'error en kindergarde, resultado de la consulta :{result}')
+        return 0
+
     if len(result)==0:
         return 0
-    
+
     puntos=[]
     [  puntos.append( ( e['lat'] , e['lng'] ) )    for e in result  ]
     
@@ -155,7 +160,12 @@ def val_starbucks(point):
     radio=2000
     item=("starbucks","text")
     result=apiquery.importar_api_map(lat,lon,radio,item)
-    # no hay starbucks
+    # no hay starbucks o error en la consulta
+    if isinstance(result,int):
+        print(f'error en starbucks, resultado de la consulta :{result}')
+        return 0
+
+   # no hay starbucks
     if len(result)==0:
         return 0
     
@@ -182,7 +192,12 @@ def val_airport(point):
     radio=10000
     item=("airport","type")
     result=apiquery.importar_api_map(lat,lon,radio,item)
-    # no hay aeropuertos 
+    # no hay aeropuertos o error en la consulta
+    if isinstance(result,int):
+        print(f'error en aeropuerto, resultado de la consulta :{result}')
+        return 0
+
+   # no hay aeropuertos 
     if len(result)==0:
         return 0
     
@@ -202,6 +217,11 @@ def val_party(point):
     radio=2000
     item=("night_club","type")
     result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay clubs o error en la consulta
+    if isinstance(result,int):
+        print(f'error en party, resultado de la consulta :{result}')
+        return 0
+
     # no hay bares de copas
     if len(result)==0:
         return 0
@@ -233,6 +253,11 @@ def val_basquet(point):
     radio=1500
     item=("basketball court","text")
     result=apiquery.importar_api_map(lat,lon,radio,item)
+    # no hay canchas o error en la consulta
+    if isinstance(result,int):
+        print(f'error en basquet, resultado de la consulta :{result}')
+        return 0
+
     # no hay canchas de baloncesto
     if len(result)==0:
         return 0
@@ -255,7 +280,12 @@ def val_vegetariano(point):
     radio=1500
     item=("vegan restaurant","text")
     result=apiquery.importar_api_map(lat,lon,radio,item)
-    # no hay restaurantes venganos
+    # no hay vaganos o error en la consulta
+    if isinstance(result,int):
+        print(f'error en veganos, resultado de la consulta :{result}')
+        return 0
+
+   # no hay restaurantes venganos
     if len(result)==0:
         return 0
     
