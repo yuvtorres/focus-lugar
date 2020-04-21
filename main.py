@@ -16,21 +16,21 @@ def main():
     #
     # Calcula la malla para new york
     #
-	valor_ny=[]
-	lat_max=40.859602
-	lat_min=40.641156
-	lng_max=-73.887981
-	lng_min=-74.025693
-	num_pasos=20
-	paso_lat=(lat_max-lat_min)/num_pasos
-	paso_lng=(lng_max-lng_min)/num_pasos
+    valor_ny=[]
+    lat_max=40.859602
+    lat_min=40.641156
+    lng_max=-73.887981
+    lng_min=-74.025693
+    num_pasos=20
+    paso_lat=(lat_max-lat_min)/num_pasos
+    paso_lng=(lng_max-lng_min)/num_pasos
 
-	for i in range(num_pasos):
-	    linea_valor=[]
-	    for k in range(num_pasos):
-	        linea_valor.append(fun_objetivo([lat_min+k*paso_lat,lng_min+i*paso_lng]))
+    for i in range(num_pasos):
+        linea_valor=[]
+        for k in range(num_pasos):
+            linea_valor.append(fun_objetivo([lat_min+k*paso_lat,lng_min+i*paso_lng]))
         
-	    valor_ny.append(linea_valor)
+        valor_ny.append(linea_valor)
 
 
     malla_ny=[]
@@ -42,12 +42,12 @@ def main():
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)+0.5)*paso_lat),
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)-0.5)*paso_lat)]])
 
-            malla_ny.append( Feature(properties={"valor":valor[k][i]},geometry=el_cubo) )
+        malla_ny.append( Feature(properties={"valor":valor[k][i]},geometry=el_cubo) )
 
     malla_ny_json= FeatureCollection(malla_ny)
     
     with open('../output/ny_json.json', 'w') as outfile:
-    json.dump(malla_ny_json, outfile)
+        json.dump(malla_ny_json, outfile)
 
     df1=gpd.read_file('../output/ny_json.json')
     df1 = df1.to_crs(epsg=3857)
@@ -68,7 +68,8 @@ def main():
     nlat_max=40.521943
     lat_min=40.402217
     lng_max=-3.736493
-    lng_min=-3.658524um_pasos=20
+    lng_min=-3.658524
+    num_pasos=20
     paso_lat=(lat_max-lat_min)/num_pasos
     paso_lng=(lng_max-lng_min)/num_pasos
 
@@ -89,12 +90,12 @@ def main():
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)+0.5)*paso_lat),
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)-0.5)*paso_lat)]])
 
-            malla_md.append( Feature(properties={"valor":valor[k][i]},geometry=el_cubo) )
+        malla_md.append( Feature(properties={"valor":valor[k][i]},geometry=el_cubo) )
 
     malla_md_json= FeatureCollection(malla_md)
     
     with open('../output/md_json.json', 'w') as outfile:
-    json.dump(malla_md_json, outfile)
+        json.dump(malla_md_json, outfile)
 
     df1=gpd.read_file('../output/md_json.json')
     df1 = df1.to_crs(epsg=3857)

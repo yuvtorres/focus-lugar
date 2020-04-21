@@ -61,9 +61,17 @@ a) The tool define an objective function, that follow:
 
 	and how each of the personal makes grow the company. 
 
-b) Over this function the tool proposes some points and begin iterate over the function until the stop criteria.
+b) Over this function the tool proposes some points and begin iterate over the function until the stop criteria. 
+Initially the optimization was iterative (gradient method), but with each time we call our objective function, 
+were neccesary to call the API of google at less nine times, and to calculate the gradient in each iteration is neccesary 
+to call the the objective function four times. And probably the library `numdifftools`used to calculate the gradient made this
+calls parallel and the google API can not answer.
 
+c) As a solution the heuristic method for optimization is to create a mesh over each city and determinate in this way the 
+best location for the company.
 
 ## The Results
+
+As you can see in the 
 
 
