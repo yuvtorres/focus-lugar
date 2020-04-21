@@ -43,7 +43,7 @@ def main():
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)+0.5)*paso_lat),
                           (lng_min + ( float(i) - 0.5)*paso_lng, lat_min + (float(k)-0.5)*paso_lat)]])
 
-        malla_ny.append( Feature(properties={"valor":valor_ny[k][i]},geometry=el_cubo) )
+            malla_ny.append( Feature(properties={"valor":valor_ny[k][i]},geometry=el_cubo) )
 
     malla_ny_json= FeatureCollection(malla_ny)
     
