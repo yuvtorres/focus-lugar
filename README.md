@@ -75,8 +75,8 @@ best location for the company.
 As you can see in the maps, there are some areas in the city that are more suitable for the company.
 
 #### Map of Madrid
-(output/map_md.png)
+(https://github.com/yuvtorres/focus-lugar/blob/master/output/map_md.png)
 
 #### Map of New York
-(output/map_ny.png)
+(https://github.com/yuvtorres/focus-lugar/blob/master/output/map_ny.png)
 
